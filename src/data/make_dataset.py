@@ -47,7 +47,7 @@ def get_daily_cases_stats(data: pd.DataFrame) -> pd.DataFrame:
     cases_agg["Cumsum"] = cases_agg["Daily Number of Cases"].cumsum()
     cases_agg["Daily Difference"] = cases_agg["Daily Number of Cases"].diff()
     cases_agg["Growth Factor"] = cases_agg["Daily Difference"] / cases_agg["Daily Difference"].shift(1)
-    cases_agg["Weekly Rolling Average"] = cases_agg["Daily Number of Cases"].rolling(window=7).mean()
+    cases_agg["Weekly Rolling Average"] = cases_agg["Daily Number of Cases"].rolling(window=7).mean().round()
     cases_agg["Weekly Average CumSum"] = cases_agg["Weekly Rolling Average"].cumsum()
     
     idx = cases_agg['Weekly Rolling Average'].sub(50).abs().idxmin()
