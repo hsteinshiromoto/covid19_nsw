@@ -48,8 +48,9 @@ def get_daily_cases_stats(data: pd.DataFrame) -> pd.DataFrame:
     cases_agg["Daily Difference"] = cases_agg["Daily Number of Cases"].diff()
     cases_agg["Growth Factor"] = cases_agg["Daily Difference"] / cases_agg["Daily Difference"].shift(1)
     cases_agg["Weekly Rolling Average"] = cases_agg["Daily Number of Cases"].rolling(window=7).mean()
+    cases_agg["Weekly Average CumSum"] = cases_agg["Weekly Rolling Average"].cumsum()
     
-    idx = cases_agg['Cumsum'].sub(100).abs().idxmin()
+    idx = cases_agg['Weekly Rolling Average'].sub(50).abs().idxmin()
     cases_agg["Epidemiological Days"]  = (cases_agg["notification_date"] - cases_agg.loc[idx, "notification_date"]) / np.timedelta64(1, 'D')
 
     return cases_agg
