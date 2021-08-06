@@ -121,7 +121,8 @@ def make_train_test_split(data: pd.DataFrame, strategy: str=None
     else:
         X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_size)
 
-    return X_train.values, X_test.values, y_train.values, y_test.values
+    return X_train.values.squeeze(), X_test.values.squeeze() \
+        ,y_train.values.squeeze(), y_test.values.squeeze()
 
 
 @typechecked
