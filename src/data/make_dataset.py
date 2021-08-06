@@ -96,8 +96,7 @@ def make_cases_training_data(datetime_col_name: str="notification_date"
 
 @typechecked
 def make_train_test_split(data: pd.DataFrame, strategy: str=None
-                        ,train_size: float=0.75) -> Union[pd.DataFrame, pd.DataFrame
-                                                    ,pd.DataFrame, pd.DataFrame]:
+                        ,train_size: float=0.75):
     """Make train_test_split
 
     Args:
@@ -106,10 +105,10 @@ def make_train_test_split(data: pd.DataFrame, strategy: str=None
         train_size (float, optional): Percentage of data used for training. Defaults to 0.75.
 
     Returns:
-        (pd.DataFrame): Train and test data and associated targets
+        (np.ndarray): Train and test data and associated targets
     """
     mask = data['Epidemiological Days'] >= 0
-    X = data.loc[mask, ["Epidemiological Days", 'Daily Number of Cases', 'Pct Change']]
+    X = data.loc[mask, ["Epidemiological Days"]]
     y = data.loc[mask, ["Weekly Rolling Average"]]
 
     if strategy == "time":
@@ -122,25 +121,26 @@ def make_train_test_split(data: pd.DataFrame, strategy: str=None
     else:
         X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_size)
 
-    return X_train, X_test, y_train, y_test
+    return X_train.values, X_test.values, y_train.values, y_test.values
 
 
 @typechecked
-def get_prior_distr_params(y_train: pd.DataFrame) -> float:
+def get_prior_distr_params(y_train: np.ndarray):
     """
     Get the prior distribution parameters for the training data
 
     Args:
-        y_train (pd.DataFrame): Target training data
+        y_train (np.ndarray): Target training data
 
     Returns:
         (float): Statistics of target data distribution
     """
 
-    initial_number_of_cases = y_train.min()
-    daily_number_of_cases_std = y_train.std()
-    average_pct_change = y_train.pct_change().mean()
-    std_pct_change = y_train.pct_change().std()
+    initial_number_of_cases = np.min(y_train)
+    daily_number_of_cases_std = np.std(y_train)
+    pct_change = np.diff(y_train, axis=0) / y_train[:-1]
+    average_pct_change = np.mean(pct_change)
+    std_pct_change = np.std(pct_change)
 
     return initial_number_of_cases, daily_number_of_cases_std\
         ,average_pct_change, std_pct_change
