@@ -1,0 +1,15 @@
+---
+title: 'Forecasting Seven Days Average Number of COVID19 Cases'
+date: 2021-08-04
+permalink: posts/2021/08/04/predicting_nsw_covid_cases
+categories: 
+  - covid19
+  - python
+  - machine learning
+  - bayes modelling
+tags:
+  - python
+  - machine learning
+  - bayes modelling
+layout: notebook
+---
