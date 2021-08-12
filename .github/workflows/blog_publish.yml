@@ -29,8 +29,11 @@ jobs:
       - name: List
         run: pwd
 
+      - name: List home
+        run: cd /home/vscode && pwd
+
       - name: Clone repository
-        run: cd ~ && git clone https://github.com/hsteinshiromoto/covid19_nsw.git
+        run: cd /home/vscode && git clone https://github.com/hsteinshiromoto/covid19_nsw.git
 
       # Runs a single command using the runners shell
       - name: Create html file
