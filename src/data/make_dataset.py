@@ -50,7 +50,7 @@ def subset_latest_outbreak(date: str, likely_source_of_infection: str
 def get_daily_cases_stats(data: pd.DataFrame
                         ,summarize_feature_name: str="Daily Number of Cases"
                         ,datetime_col_name: str="notification_date"
-                        ,initial_number_of_cases: int=50) -> pd.DataFrame:
+                        ,initial_number_of_cases: int=10) -> pd.DataFrame:
 
     summarized_data = data.groupby(datetime_col_name).count().iloc[:, 0].to_frame(name=summarize_feature_name)
     summarized_data.reset_index(inplace=True)
