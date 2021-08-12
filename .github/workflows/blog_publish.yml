@@ -36,6 +36,6 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Make Artifact
-          path: notebooks/Bayesian_exponential_model.html
+          path: /home/vscode/covid19_nsw/notebooks/Bayesian_exponential_model.html
           if-no-files-found: error
           retention-days: 7
