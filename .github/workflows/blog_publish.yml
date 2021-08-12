@@ -30,7 +30,7 @@ jobs:
         run: cd /home/vscode && git clone https://github.com/hsteinshiromoto/covid19_nsw.git
 
       - name: Chmod
-        run: chmod 777 -R /home/vscode/.local/
+        run: sudo chmod 777 -R /home/vscode/.local/
 
       - name: Add jupyter to path
         run: export PATH="/home/vscode/.local/bin:$PATH"
