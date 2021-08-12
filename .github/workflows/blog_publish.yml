@@ -29,6 +29,9 @@ jobs:
       - name: Clone repository
         run: cd /home/vscode && git clone https://github.com/hsteinshiromoto/covid19_nsw.git
 
+      - name: Chmod
+        run: chmod 777 -R /home/vscode/.local/
+
       - name: Add jupyter to path
         run: export PATH="/home/vscode/.local/bin:$PATH"
 
