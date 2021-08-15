@@ -1,0 +1,1 @@
+![Python Version](https://img.shields.io/badge/python-3-blue?style=for-the-badge?logo=Python) ![License MIT](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
