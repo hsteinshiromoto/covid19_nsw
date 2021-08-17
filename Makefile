@@ -17,7 +17,7 @@ endif
 PROJECT_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME = $(shell basename ${PROJECT_PATH})
 
-DOCKER_IMAGE_NAME = ghcr.io/hsteinshiromoto/${PROJECT_NAME}/${PROJECT_NAME}
+DOCKER_IMAGE_NAME = hsteinshiromoto/${PROJECT_NAME}
 
 BUILD_DATE = $(shell date +%Y%m%d-%H:%M:%S)
 
