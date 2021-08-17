@@ -38,14 +38,6 @@ build:
 	docker build --build-arg BUILD_DATE=${BUILD_DATE} -t ${DOCKER_IMAGE_TAG} .
 	@echo "Done"
 
-## Build container to docker hub
-push:
-	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${DOCKER_TAG})
-
-	@echo "Pushing docker image ${DOCKER_IMAGE_TAG} to docker hub"
-	docker push ${DOCKER_IMAGE_TAG}
-	@echo "Done"
-
 #################################################################################
 # Self Documenting Commands                                                     #
 #################################################################################
