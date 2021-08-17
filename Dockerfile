@@ -72,7 +72,6 @@ RUN bash /usr/local/bin/setup_python.sh test_environment && \
 RUN mkdir -p /home/$USERNAME
 WORKDIR /home/$USERNAME
 
-# N.B.: Keep the order 1. entrypoint, 2. cmd
 USER $USERNAME
 
 # Get poetry
@@ -84,6 +83,7 @@ RUN poetry config virtualenvs.create false \
     && cd /usr/local \
     && poetry install --no-interaction --no-ansi
 
+# N.B.: Keep the order 1. entrypoint, 2. cmd
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 EXPOSE 8888
