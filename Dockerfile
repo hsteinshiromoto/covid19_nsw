@@ -69,10 +69,10 @@ RUN bash /usr/local/bin/setup_python.sh test_environment && \
 	bash /usr/local/bin/setup_python.sh requirements
 
 # Create the "home" folder
-RUN mkdir -p /home/$USERNAME
-WORKDIR /home/$USERNAME
-
 USER $USERNAME
+RUN cd /home && git clone https://github.com/hsteinshiromoto/covid19_nsw.git
+
+WORKDIR $HOME
 
 # Get poetry
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
