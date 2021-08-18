@@ -70,7 +70,7 @@ RUN bash /usr/local/bin/setup_python.sh test_environment && \
 
 # Create the "home" folder
 USER $USERNAME
-RUN cd /home && rm -rf covid19_nsw/ && git clone https://github.com/hsteinshiromoto/covid19_nsw.git
+RUN mkdir -p $HOME && cd $HOME && git clone https://github.com/hsteinshiromoto/covid19_nsw.git
 
 WORKDIR $HOME
 
