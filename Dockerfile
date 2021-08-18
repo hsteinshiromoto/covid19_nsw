@@ -78,6 +78,7 @@ WORKDIR $HOME/covid19_nsw
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 ENV PATH="${PATH}:$HOME/.poetry/bin"
 ENV PATH="${PATH}:$HOME/.local/bin"
+ENV PATH="${PATH}:$HOME/covid19_nsw/bin"
 
 RUN poetry config virtualenvs.create false \
     && cd /usr/local \

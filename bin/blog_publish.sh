@@ -9,7 +9,7 @@ project_root=$(git rev-parse --show-toplevel)
 
 cd ${project_root}/notebooks
 
-jupyter nbconvert --to html $1.ipynb
+# jupyter nbconvert --to html $1.ipynb
 cat <<EOF > $1.html
 $(cat $1.jekyll)
 
