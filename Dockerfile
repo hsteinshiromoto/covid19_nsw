@@ -72,7 +72,7 @@ RUN bash /usr/local/bin/setup_python.sh test_environment && \
 USER $USERNAME
 RUN mkdir -p $HOME && cd $HOME && git clone https://github.com/hsteinshiromoto/covid19_nsw.git
 
-WORKDIR $HOME
+WORKDIR $HOME/covid19_nsw
 
 # Get poetry
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
