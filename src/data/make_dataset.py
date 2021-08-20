@@ -95,12 +95,13 @@ def make_cases_training_data(datetime_col_name: str="notification_date"
     
 
 @typechecked
-def make_train_test_split(data: pd.DataFrame, strategy: str=None
-                        ,train_size: float=0.75):
+def make_train_test_split(data: pd.DataFrame, target: str=None, 
+                        strategy: str=None, train_size: float=0.75):
     """Make train_test_split
 
     Args:
         data (pd.DataFrame): Data set containing predictor and target
+        target (str): Name of target column
         strategy (str, optional): Choice of train-test split. Defaults to None.
         train_size (float, optional): Percentage of data used for training. Defaults to 0.75.
 
@@ -109,7 +110,7 @@ def make_train_test_split(data: pd.DataFrame, strategy: str=None
     """
     mask = data['Epidemiological Days'] >= 0
     X = data.loc[mask, ["Epidemiological Days"]]
-    y = data.loc[mask, ["Weekly Rolling Average"]]
+    y = data.loc[mask, [target]]
 
     if strategy == "time":
         test_size = 1.0 - train_size
