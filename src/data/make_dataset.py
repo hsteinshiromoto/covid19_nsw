@@ -63,7 +63,7 @@ def get_daily_cases_stats(data: pd.DataFrame
     summarized_data["Pct Change"] = summarized_data["Weekly Rolling Average"].pct_change()
     summarized_data["Weekly Average CumSum"] = summarized_data["Weekly Rolling Average"].cumsum()
     
-    idx = summarized_data['Weekly Rolling Average'].sub(initial_number_of_cases).abs().idxmin()
+    idx = summarized_data['Weekly Average CumSum'].sub(initial_number_of_cases).abs().idxmin()
     summarized_data["Epidemiological Days"]  = (summarized_data[datetime_col_name] - summarized_data.loc[idx, datetime_col_name]) / np.timedelta64(1, 'D')
 
     return summarized_data
