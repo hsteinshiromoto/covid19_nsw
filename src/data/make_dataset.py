@@ -110,7 +110,7 @@ def make_train_test_split(data: pd.DataFrame, target: str=None,
     """
     mask = data['Epidemiological Days'] >= 0
     X = data.loc[mask, ["Epidemiological Days"]]
-    y = data.loc[mask, [target]]
+    y = data.loc[mask, target]
 
     if strategy == "time":
         test_size = 1.0 - train_size
