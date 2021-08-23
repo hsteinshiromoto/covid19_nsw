@@ -47,8 +47,12 @@ jobs:
 
       - name: Convert Notebooks
         run: jupyter nbconvert --to html notebooks/Bayesian_exponential_model.ipynb
+
+      - name: Add Jekyll Header
+        run: bash bin/blog_publish.sh Bayesian_exponential_model
             
-      - uses: actions/upload-artifact@v2
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
         with:
           name: Bayesian exponential model
           path: notebooks/Bayesian_exponential_model.html

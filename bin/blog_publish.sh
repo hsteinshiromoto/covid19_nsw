@@ -9,6 +9,8 @@ project_root=$(git rev-parse --show-toplevel)
 
 cd ${project_root}/notebooks
 
+echo "In folder $(pwd)"
+
 # jupyter nbconvert --to html $1.ipynb
 cat <<EOF > $1.html
 $(cat $1.jekyll)
