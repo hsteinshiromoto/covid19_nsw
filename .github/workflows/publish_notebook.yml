@@ -24,6 +24,7 @@ jobs:
 
     container:
         image: ghcr.io/${{ github.actor }}/covid19_nsw/covid19_nsw
+        options: --user root
         credentials:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
