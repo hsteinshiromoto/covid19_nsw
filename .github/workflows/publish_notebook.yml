@@ -32,7 +32,7 @@ jobs:
   #     - name: Publish
   #       run: cd /home/vscode/covid19_nsw && bash bin/blog_publish.sh Bayesian_exponential_model
 
-  native:
+  publish_Bayesian_model:
     runs-on: ubuntu-latest
 
     steps:
