@@ -19,25 +19,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  get_container:
-    runs-on: ubuntu-latest
+  # get_container:
+  #   runs-on: ubuntu-latest
 
-    container:
-        image: ghcr.io/${{ github.actor }}/covid19_nsw/covid19_nsw
-        credentials:
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+  #   container:
+  #       image: ghcr.io/${{ github.actor }}/covid19_nsw/covid19_nsw
+  #       credentials:
+  #         username: ${{ github.repository_owner }}
+  #         password: ${{ secrets.GITHUB_TOKEN }}
 
-    steps:
-      - name: Publish
-        run: cd /home/vscode/covid19_nsw && bash bin/blog_publish.sh Bayesian_exponential_model
+  #   steps:
+  #     - name: Publish
+  #       run: cd /home/vscode/covid19_nsw && bash bin/blog_publish.sh Bayesian_exponential_model
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Bayesian exponential model
-          path: /home/vscode/covid19_nsw/notebooks/Bayesian_exponential_model.html
-          if-no-files-found: error
-          retention-days: 14
+  #     - uses: actions/upload-artifact@v2
+  #       with:
+  #         name: Bayesian exponential model
+  #         path: /home/vscode/covid19_nsw/notebooks/Bayesian_exponential_model.html
+  #         if-no-files-found: error
+  #         retention-days: 14
 
   native:
     runs-on: ubuntu-latest
