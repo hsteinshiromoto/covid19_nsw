@@ -19,7 +19,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test_from_container:
+  publish_notebook:
     runs-on: ubuntu-latest
 
     container:
@@ -51,30 +51,3 @@ jobs:
           path: notebooks/Bayesian_exponential_model.html
           if-no-files-found: error
           retention-days: 14
-
-  # publish_Bayesian_model:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v2.2.2
-
-  #     - name: Install Jupyter
-  #       run: pip install jupyter
-
-  #     - name: Convert Notebooks
-  #       run: jupyter nbconvert --to html notebooks/Bayesian_exponential_model.ipynb
-
-  #     - name: Add Jekyll Header
-  #       run: bash bin/blog_publish.sh Bayesian_exponential_model
-            
-  #     - name: Upload Artifact
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: Bayesian exponential model
-  #         path: notebooks/Bayesian_exponential_model.html
-  #         if-no-files-found: error
-  #         retention-days: 14
