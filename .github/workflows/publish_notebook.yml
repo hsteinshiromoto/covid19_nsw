@@ -19,22 +19,34 @@ on:
   workflow_dispatch:
 
 jobs:
-  get_container:
+  publish_notebook:
     runs-on: ubuntu-latest
 
     container:
         image: ghcr.io/${{ github.actor }}/covid19_nsw/covid19_nsw
+        options: --user root # N.B. Necessary to run actions/checkout@v2
         credentials:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - name: Publish
-        run: cd /home/vscode/covid19_nsw && bash bin/blog_publish.sh Bayesian_exponential_model
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - uses: actions/upload-artifact@v2
+      # N.B. Necessary to reinstall Jupyter
+      - name: Install Jupyter
+        run: pip install jupyter
+
+      - name: Convert Notebooks
+        run: jupyter nbconvert --to html notebooks/Bayesian_exponential_model.ipynb
+
+      - name: Add Jekyll Header
+        run: bash bin/blog_publish.sh Bayesian_exponential_model
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
         with:
           name: Bayesian exponential model
-          path: /home/vscode/covid19_nsw/notebooks/Bayesian_exponential_model.html
+          path: notebooks/Bayesian_exponential_model.html
           if-no-files-found: error
           retention-days: 14
