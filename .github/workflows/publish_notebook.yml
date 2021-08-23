@@ -19,18 +19,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  # get_container:
-  #   runs-on: ubuntu-latest
+  test_from_container:
+    runs-on: ubuntu-latest
 
-  #   container:
-  #       image: ghcr.io/${{ github.actor }}/covid19_nsw/covid19_nsw
-  #       credentials:
-  #         username: ${{ github.repository_owner }}
-  #         password: ${{ secrets.GITHUB_TOKEN }}
+    container:
+        image: ghcr.io/${{ github.actor }}/covid19_nsw/covid19_nsw
+        credentials:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-  #   steps:
-  #     - name: Publish
-  #       run: cd /home/vscode/covid19_nsw && bash bin/blog_publish.sh Bayesian_exponential_model
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Convert Notebooks
+        run: jupyter nbconvert --to html notebooks/Bayesian_exponential_model.ipynb
+
+      - name: Add Jekyll Header
+        run: bash bin/blog_publish.sh Bayesian_exponential_model
 
   publish_Bayesian_model:
     runs-on: ubuntu-latest
