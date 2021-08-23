@@ -24,8 +24,7 @@ jobs:
 
     container:
         image: ghcr.io/${{ github.actor }}/covid19_nsw/covid19_nsw
-        # N.B. Necessary to run actions/checkout@v2
-        options: --user root
+        options: --user root # N.B. Necessary to run actions/checkout@v2
         credentials:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
