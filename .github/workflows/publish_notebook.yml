@@ -50,7 +50,7 @@ jobs:
         uses: actions/setup-python@v2.2.2
 
       - name: Install JekyllNB
-        run: pip install jekyllnb
+        run: pip install jupyter
 
       - name: Convert Notebooks
         run: jupyter nbconvert --to html notebooks/Bayesian_exponential_model.ipynb
