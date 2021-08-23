@@ -33,6 +33,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Install Jupyter
+        run: pip install jupyter
+
       - name: Convert Notebooks
         run: jupyter nbconvert --to html notebooks/Bayesian_exponential_model.ipynb
 
