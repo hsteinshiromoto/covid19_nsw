@@ -19,5 +19,5 @@ jobs:
         with:
           token: ${{ secrets.API_TOKEN_GITHUB }}
           repository: ${{ github.repository }}
-          event-type: trigger-workflow-2
+          event-type: workflow-2
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
