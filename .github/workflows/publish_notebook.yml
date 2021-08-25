@@ -9,7 +9,6 @@ on:
     branches:
       - feature/**
       - release/**
-      - main
     # Publish `v1.2.3` tags as releases.
     tags:        
       - '**'
@@ -52,3 +51,15 @@ jobs:
           if-no-files-found: error
           retention-days: 14
           workflow_conclusion: success
+
+      - name: Pushes test file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_file: 'notebooks/Bayesian_exponential_model.html'
+          destination_repo: 'hsteinshiromoto/blog'
+          destination_folder: 'notebooks'
+          user_email: 'h.stein.shiromoto@gmail.com'
+          user_name: 'hsteinshiromoto'
+          commit_message: 'Publish notebook html'
