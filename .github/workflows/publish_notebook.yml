@@ -58,8 +58,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'notebooks/Bayesian_exponential_model.html'
-          destination_repo: 'hsteinshiromoto/blog'
-          destination_folder: 'notebooks'
+          destination_repo: 'hsteinshiromoto/hsteinshiromoto.github.io'
+          destination_folder: '_posts'
           user_email: 'h.stein.shiromoto@gmail.com'
           user_name: 'hsteinshiromoto'
           commit_message: 'Publish notebook html'
