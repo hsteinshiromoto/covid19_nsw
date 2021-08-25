@@ -1,4 +1,5 @@
 name: Workflow 2
+
 on:
   repository_dispatch:
     types: [trigger-workflow-2]
