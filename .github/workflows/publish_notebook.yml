@@ -41,12 +41,26 @@ jobs:
         run: jupyter nbconvert --to html notebooks/Bayesian_exponential_model.ipynb
 
       - name: Add Jekyll Header
-        run: bash bin/blog_publish.sh Bayesian_exponential_model
+        run: bash bin/blog_publish.sh Bayesian_exponential_model 2021-08-04-blog-post_predicting_nsw_covid_cases
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: Bayesian exponential model
-          path: notebooks/Bayesian_exponential_model.html
+          path: notebooks/2021-08-04-blog-post_predicting_nsw_covid_cases.html
           if-no-files-found: error
           retention-days: 14
+          workflow_conclusion: success
+
+      - name: Pushes test file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_file: 'notebooks/2021-08-04-blog-post_predicting_nsw_covid_cases.html'
+          destination_repo: 'hsteinshiromoto/hsteinshiromoto.github.io'
+          destination_folder: '_posts'
+          user_email: 'h.stein.shiromoto@gmail.com'
+          user_name: 'hsteinshiromoto'
+          commit_message: 'Publish notebook html'
+          destination_branch: 'master'

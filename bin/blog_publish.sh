@@ -3,7 +3,7 @@
 # Args:
 #   1 (str): notebook file basename, ie, without the .extension
 # Example:
-#   $ bash export_html.sh Bayesian_exponential_model
+#   bash bin/blog_publish.sh Bayesian_exponential_model 2021-08-04-blog-post_predicting_nsw_covid_cases
 
 project_root=$(git rev-parse --show-toplevel)
 
@@ -17,3 +17,5 @@ $(cat $1.jekyll)
 
 $(cat $1.html)
 EOF
+
+mv $1.html $2.html
