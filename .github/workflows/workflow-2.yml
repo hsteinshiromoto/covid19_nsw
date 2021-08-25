@@ -1,0 +1,19 @@
+name: Workflow 2
+
+on:
+  repository_dispatch:
+    types: [workflow-2]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  exec:
+    runs-on: ubuntu-latest
+
+    if: github.event_name == 'push'
+
+    steps:      
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.sha }}

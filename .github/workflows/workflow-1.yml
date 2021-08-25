@@ -1,0 +1,27 @@
+# https://www.r-bloggers.com/2020/07/running-github-actions-sequentially/
+# https://github.com/StevenMMortimer/salesforcer/blob/main/.github/workflows/main-02-test-coverage.yml
+
+
+name: Workflow 1
+
+on:
+  push:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    if: github.event_name == 'push'
+
+    steps:
+      - name: Trigger next workflow
+        if: success()
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+          repository: ${{ github.repository }}
+          event-type: workflow-2
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
