@@ -63,3 +63,4 @@ jobs:
           user_email: 'h.stein.shiromoto@gmail.com'
           user_name: 'hsteinshiromoto'
           commit_message: 'Publish notebook html'
+          destination_branch: 'master'
