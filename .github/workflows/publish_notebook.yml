@@ -9,6 +9,7 @@ on:
     branches:
       - feature/**
       - release/**
+      - main
     # Publish `v1.2.3` tags as releases.
     tags:        
       - '**'
@@ -50,3 +51,4 @@ jobs:
           path: notebooks/Bayesian_exponential_model.html
           if-no-files-found: error
           retention-days: 14
+          workflow_conclusion: success
